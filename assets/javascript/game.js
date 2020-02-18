@@ -26,12 +26,18 @@ var computerChoice = letters[Math.floor(Math.random() * letters.length)];
 // function for capturing the key pressed by user
 document.onkeydown = function() {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(userGuess);
 
     if (userGuess==computerChoice) {
+        alert("same letter")
         wins++; 
-    }   else {
-        
+    } else if (userGuess!==computerChoice) {
+        alert("not same letter")
+        guessesRemaining--;
+        lettersUsed.push(userGuess);
     }
-                
+
+    var html = "<h1>Psychic Game</h1>" + "<p>Guess what letter I'm thinking of</p>" + "<p>Wins: " + wins + "</p>" + "<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + guessesRemaining + "</p>" + "<p>Your Guesses So Far: " + lettersUsed + "</p>";
+
+    document.querySelector("#game").innerHTML = html;
 }
+    
