@@ -28,16 +28,22 @@ document.onkeydown = function() {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
     if (userGuess==computerChoice) {
-        alert("same letter")
-        wins++; 
+        alert("The correct letter was " + computerChoice.toUpperCase() + "!");
+        wins++;
+        lettersUsed = [];
+        guessesRemaining = 10;    
     } else if (userGuess!==computerChoice) {
-        alert("not same letter")
         guessesRemaining--;
         lettersUsed.push(userGuess);
+    }   if (guessesRemaining < 1) {
+        losses++;
+        lettersUsed = [];
+        guessesRemaining = 10;    
     }
+
+    
 
     var html = "<h1>Psychic Game</h1>" + "<p>Guess what letter I'm thinking of</p>" + "<p>Wins: " + wins + "</p>" + "<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + guessesRemaining + "</p>" + "<p>Your Guesses So Far: " + lettersUsed + "</p>";
 
     document.querySelector("#game").innerHTML = html;
 }
-    
